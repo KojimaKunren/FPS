@@ -148,6 +148,11 @@ public class Player : MonoBehaviour
         return this.hp;
     }
 
+    public int GetMAXHP()
+    {
+        return Player.MAXHP;
+    }
+
     //スコア取得用
     public int GetScore()
     {
