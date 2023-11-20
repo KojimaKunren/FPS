@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
-    public Player player;
+    Player player;
     public GameObject playerObject;
     public GameObject mainCanvas;
     public GameObject gameOverCanvas;
@@ -19,11 +19,14 @@ public class GameManager : MonoBehaviour
     int minute;
     int seconds;
 
+
     public Color endColor;
     void Start()
     {
+
         timer = 120.00f;
         mainCanvas.gameObject.SetActive(true);
+        player = playerObject.gameObject.GetComponent<Player>();
     }
 
     void Update()
@@ -34,7 +37,9 @@ public class GameManager : MonoBehaviour
         if (player.IsDead())
         {
             Destroy(playerObject);
+            Cursor.lockState = CursorLockMode.None;
             gameOverCanvas.gameObject.SetActive(true);
+            return;
         }
     }
 
@@ -42,6 +47,7 @@ public class GameManager : MonoBehaviour
     public void OnGameOverButtonClicked()
     {
         SceneManager.LoadScene("GameOver");
+
     }
 
     public void CountdownTimer()

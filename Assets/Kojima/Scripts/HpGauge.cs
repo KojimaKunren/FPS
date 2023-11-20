@@ -16,13 +16,13 @@ public class HpGauge : MonoBehaviour
     void Start()
     {
         slider.value = 1;
-        int playerHp = player.hp;
+        int playerHp = player.GetHp();
         maxHp = playerHp;
     }
 
     void Update()
     {
-        currentHp = player.hp;
+        currentHp = player.GetHp();
         slider.value = (float)currentHp / (float)maxHp;
     }
 }

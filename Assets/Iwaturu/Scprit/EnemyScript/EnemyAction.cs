@@ -20,6 +20,8 @@ public class EnemyAction : MonoBehaviour
     GameObject target;
     bool capture;
 
+    [SerializeField] private GameObject effectPrefab; //DamageEffect
+
     void Start()
     {
         hp = MaxHp;
@@ -66,6 +68,15 @@ public class EnemyAction : MonoBehaviour
             {
                 Destroy(this.gameObject);
             }
+
+        }
+
+        if (other.gameObject.tag == "bullet")
+        {
+            // float effectPosZ = transform.position.z + 2;
+            // Vector3 effectPos = new Vector3(transform.position.x, transform.position.y, effectPosZ);
+            // Instantiate(effectPrefab, effectPos, transform.rotation);
+            Instantiate(effectPrefab, transform.position, transform.rotation);
         }
     }
     private void OnCollisionStay(Collision other)
