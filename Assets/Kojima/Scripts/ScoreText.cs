@@ -5,20 +5,19 @@ using UnityEngine.UI;
 
 public class ScoreText : MonoBehaviour
 {
-    public Player player;
+    [SerializeField] private Player player; //プレイヤー取得用
 
-    int score;
-    Text scoreText;
+    int score; //スコア格納用
+    Text scoreText; //スコアテキスト格納用
 
     void Start()
     {
-        scoreText = this.GetComponent<Text>();
-
+        scoreText = this.GetComponent<Text>(); //スコアテキストのテキストコンポーネントを取得
     }
 
     void Update()
     {
-        score = player.GetScore();
-        scoreText.text = score + "";
+        score = player.GetScore(); //Playerからスコアを取得
+        scoreText.text = score + ""; //スコアテキストに代入
     }
 }
