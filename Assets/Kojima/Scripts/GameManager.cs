@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
         timer = 120.00f;
         mainCanvas.gameObject.SetActive(true);
+        gameOverCanvas.SetActive(false); //ゲームーオーバー用キャンバスをオフに
         player = playerObject.gameObject.GetComponent<Player>();
     }
 

@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    string name; //プレイヤー名
+
+    int hp; //プレイヤーの体力
+
+    const int MAXHP = 100; //プレイヤーの体力最大値
+    int score; //スコア格納用
     [SerializeField] private float speed; //プレイヤーの動く速度
 
     float initSpeed; //初期速度の保存用
@@ -13,12 +19,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float sensivytivy; //水平の感度（マウスHorizontal感度）
 
     [SerializeField] private float speedRotation; //プレイヤーの回転速度
-    string name; //プレイヤー名
-
-    int hp; //プレイヤーの体力
-
-    const int MAXHP = 100; //プレイヤーの体力最大値
-    int score; //スコア格納用
 
 
     Vector3 playerPosition; //プレイヤーの位置取得用
@@ -54,8 +54,6 @@ public class Player : MonoBehaviour
 
     bool cursorLock; //カーソル固定判定
 
-    public GameObject gameOverCanvas; //ゲームオーバー表示用
-
     Animator animator; //アニメーター
 
     void Start()
@@ -83,8 +81,6 @@ public class Player : MonoBehaviour
 
         cursorLock = true; //カーソルを固定
         animator.SetFloat("MotionSpeed", 1.0f); //アニメーターのwalk基本値を設定
-        gameOverCanvas.SetActive(false); //ゲームーオーバー用キャンバスをオフに
-
     }
 
     void Update()
