@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64696947ee2102644a72b54e64a172cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotSpeed: 1000
+  ShotSpeed: 2000
   bulletPerfab: {fileID: 7565030381299030621, guid: a1139333e2f5e0b4398ea5e70faaab9b, type: 3}
   Maxremainingbullets: 30
   remainingbullets: 30

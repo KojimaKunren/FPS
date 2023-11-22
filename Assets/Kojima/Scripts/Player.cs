@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
     {
         positionX = Input.GetAxis("Horizontal"); //入力の水平値を取得
         positionZ = Input.GetAxis("Vertical"); //入力の垂直値を取得
-        rotationX += Input.GetAxis("Mouse X") * speedRotation; //マウスの水平値を取得（プレイヤー回転用）
+        rotationX += Input.GetAxis("Mouse X") * speedRotation * Time.deltaTime; //マウスの水平値を取得（プレイヤー回転用）
         playerRotation = new Vector3(0.0f, rotationX, 0.0f); //プレイヤーの横回転値を取得
         transform.rotation = Quaternion.Euler(playerRotation); //プレイヤーの横回転を実行
 

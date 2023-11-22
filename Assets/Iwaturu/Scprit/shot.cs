@@ -6,6 +6,10 @@ public class shot : MonoBehaviour
 {
     public int ShotSpeed;//飛ばす力    
     public GameObject bulletPerfab;// 弾のプレハブ
+
+    // public GameObject muzzlePrefab1; //マズルフラッシュのプレハブ
+
+    // public GameObject muzzlePrefab2; //マズルフラッシュのプレハブ
     public int Maxremainingbullets;
     public int remainingbullets;//マガジン内の残弾
 
@@ -50,6 +54,9 @@ public class shot : MonoBehaviour
             bulletOBJ.AddForce(this.transform.forward * ShotSpeed);
             bulletOBJ.AddTorque(new Vector3(transform.position.x, transform.position.y, transform.position.z));
             remainingbullets -= 1;
+
+            //マズルフラッシュ
+            // fireMuzzleFlash();
         }
         else
         {
@@ -61,4 +68,13 @@ public class shot : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         remainingbullets = Maxremainingbullets;
     }
+
+    //マズルフラッシュ
+    // public void fireMuzzleFlash()
+    // {
+    //     Vector3 muzzleFlashPos = new Vector3(transform.position.x, transform.position.y - 2.0f, transform.position.z);
+    //     Vector3 muzzleFlashRot = new Vector3(transform.rotation.x + 180.0f, transform.rotation.y, transform.rotation.z);
+    //     Instantiate(muzzlePrefab1, muzzleFlashPos, Quaternion.Euler(muzzleFlashRot));
+    //     Instantiate(muzzlePrefab2, muzzleFlashPos, transform.rotation);
+    // }
 }
