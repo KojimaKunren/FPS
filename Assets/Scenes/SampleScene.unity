@@ -1445,6 +1445,18 @@ PrefabInstance:
       propertyPath: bulletPerfab
       value: 
       objectReference: {fileID: 7565030381299030621, guid: a1139333e2f5e0b4398ea5e70faaab9b, type: 3}
+    - target: {fileID: 7264167624613472929, guid: 56d76358151368549b762dd8f6b55af7, type: 3}
+      propertyPath: muzzlePrefab
+      value: 
+      objectReference: {fileID: 1000011396044746, guid: 326bdbb9309f7ea4991cfbdb2210a8c5, type: 3}
+    - target: {fileID: 7264167624613472929, guid: 56d76358151368549b762dd8f6b55af7, type: 3}
+      propertyPath: muzzlePrefab1
+      value: 
+      objectReference: {fileID: 1000011396044746, guid: 326bdbb9309f7ea4991cfbdb2210a8c5, type: 3}
+    - target: {fileID: 7264167624613472929, guid: 56d76358151368549b762dd8f6b55af7, type: 3}
+      propertyPath: muzzlePrefab2
+      value: 
+      objectReference: {fileID: 1743301284569550, guid: 66273507efd245b4ab00e5b8a4bec299, type: 3}
     - target: {fileID: 7264167624613472930, guid: 56d76358151368549b762dd8f6b55af7, type: 3}
       propertyPath: m_RootOrder
       value: 0

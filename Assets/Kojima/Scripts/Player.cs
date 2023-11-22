@@ -161,9 +161,16 @@ public class Player : MonoBehaviour
         if (hp <= 0)
         {
             isDead = true;
+            SetPlayerPrefs();
         }
 
         return isDead;
+    }
+
+    //スコア格納、共有処理用
+    public void SetPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("currentScore", this.score);
     }
 
     //カーソルの非表示、中央固定

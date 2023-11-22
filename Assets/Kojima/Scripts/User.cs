@@ -20,4 +20,9 @@ public class User : MonoBehaviour
         this.totalTime = totalTime;
         this.playerTagScore = playerTagScore;
     }
+
+    public int GetScores(int i)
+    {
+        return this.scores[i];
+    }
 }
