@@ -40,7 +40,7 @@ public class DataBase : MonoBehaviour
             User user = users[i];
             GameObject score = Instantiate(scorePrefab, content);
             Text scoreText = score.GetComponent<Text>();
-            scoreText.text = $"{i + 1:000}位{user.name}:{user.GetScores(0)}";
+            scoreText.text = $"{i + 1:000}位{user.name}:{user.GetScore(0)}";
         }
     }
 }

@@ -10,7 +10,11 @@ public class GameManager : MonoBehaviour
     Player player;
     public GameObject playerObject;
     public GameObject mainCanvas;
-    public GameObject gameOverCanvas;
+    public GameObject gameEndCanvas;
+
+    public GameObject gameOverTextPanel;
+
+    public GameObject gameClearTextPanel;
 
     public float timer;
 
@@ -23,10 +27,10 @@ public class GameManager : MonoBehaviour
     public Color endColor;
     void Start()
     {
-
-        timer = 120.00f;
         mainCanvas.gameObject.SetActive(true);
-        gameOverCanvas.SetActive(false); //ゲームーオーバー用キャンバスをオフに
+        gameEndCanvas.SetActive(false); //ゲームーオーバー用キャンバスをオフに
+        gameOverTextPanel.SetActive(false);
+        gameClearTextPanel.SetActive(false);
         player = playerObject.gameObject.GetComponent<Player>();
     }
 
@@ -37,18 +41,39 @@ public class GameManager : MonoBehaviour
 
         if (player.IsDead())
         {
+            EndGame();
             Destroy(playerObject);
-            Cursor.lockState = CursorLockMode.None;
-            gameOverCanvas.gameObject.SetActive(true);
+            gameOverTextPanel.SetActive(true);
             return;
+        }
+
+        if (timer <= 0 && !player.IsDead())
+        {
+            EndGame();
+            gameClearTextPanel.SetActive(true);
         }
     }
 
+    //ゲームオーバーボタン設定用
+    // public void OnGameOverButtonClicked()
+    // {
+    //     SceneManager.LoadScene("GameOver");
 
-    public void OnGameOverButtonClicked()
+    // }
+
+    public void EndGame()
     {
-        SceneManager.LoadScene("GameOver");
+        PlayerPrefs.SetFloat("time", timer);
+        PlayerPrefs.SetInt("score", player.GetScore());
+        Cursor.lockState = CursorLockMode.None;
+        enabled = false;
+        gameEndCanvas.SetActive(true);
+        Invoke("MoveResult", 3.0f);
+    }
 
+    public void MoveResult()
+    {
+        SceneManager.LoadScene("Result");
     }
 
     public void CountdownTimer()

@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 
     const int MAXHP = 100; //プレイヤーの体力最大値
     int score; //スコア格納用
+
     [SerializeField] private float speed; //プレイヤーの動く速度
 
     float initSpeed; //初期速度の保存用

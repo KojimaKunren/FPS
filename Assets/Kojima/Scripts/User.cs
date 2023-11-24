@@ -13,6 +13,11 @@ public class User : MonoBehaviour
 
     int playerTagScore;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     public User(string name, int[] scores, int totalTime, int playerTagScore)
     {
         this.name = name;
@@ -21,7 +26,17 @@ public class User : MonoBehaviour
         this.playerTagScore = playerTagScore;
     }
 
-    public int GetScores(int i)
+    public string GetUserName()
+    {
+        return this.name;
+    }
+
+    public int[] GetScores()
+    {
+        return this.scores;
+    }
+
+    public int GetScore(int i)
     {
         return this.scores[i];
     }
