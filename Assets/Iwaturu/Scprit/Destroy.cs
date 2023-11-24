@@ -5,8 +5,12 @@ using UnityEngine;
 public class Destroy : MonoBehaviour
 {
     // Start is called before the first frame update
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(this.gameObject);
+        if (!(other.gameObject.tag == "Bullet"))
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 }

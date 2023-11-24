@@ -12,45 +12,63 @@ public class OBJDestroy : MonoBehaviour
     public int MAXHP;
     public bool isTimerBreak;
     int breakDamage;
+    Vector3 Object;
+
+    float Gravity;
+
+    private void Awake()
+    {
+        OBJ = transform.parent.GetComponent<OBJDirector>();
+        Object = gameObject.GetComponent<Transform>().position;
+        Gravity = -1;
+    }
+
     private void Start()
     {
         isTimerBreak = false;
+        Debug.Log($"start:{isTimerBreak}");
         breakDamage = 0;
         int index = Random.Range(0, HPs.Length);
         MAXHP = HPs[index];
         HP = MAXHP;
+
     }
 
     private void Update()
     {
-        Breaker();
+        StartCoroutine(Breaker());
+        Object = new Vector3(Object.x, Object.y - 1, Object.z);
         HP -= breakDamage;
-        if (HP <= 1000)
+        if (isTimerBreak)
         {
             isTimerBreak = true;
-            Destroy(this.gameObject);
+            Destroy(this.transform.parent.gameObject);
         }
+
     }
 
     private void OnCollisionEnter(Collision other)
     {
+        Gravity = -0.001f;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.gameObject.tag == "bullet")
         {
-
             BulletATK = other.gameObject.GetComponent<Bullet>();
             HP -= BulletATK.attack;
-            if (HP <= 0)
+            if (HP <= 0 || HP >= -999)
             {
+                OBJ.Drop();
                 Destroy(this.gameObject);
             }
         }
-
     }
     IEnumerator Breaker()
     {
-        yield return new WaitForSeconds(180.0f);
-        OBJ = gameObject.GetComponent<OBJDirector>();
+        yield return new WaitForSeconds(20.0f);
+        isTimerBreak = true;
+        Debug.Log($"IEnumerator: {isTimerBreak}");
         breakDamage = OBJ.OBJbreak;
     }
-
 }

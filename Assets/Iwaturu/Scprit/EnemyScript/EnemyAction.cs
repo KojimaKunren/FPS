@@ -11,17 +11,13 @@ public class EnemyAction : MonoBehaviour
     EnemySearch enemySearch;
     Bullet bulletATK;
     Rigidbody rb;
-
-    GameObject es;
-    EnemyShot enemyShot;
-
     Animator animator;
 
     GameObject target;
     bool capture;
 
-    [SerializeField] private GameObject effectPrefab; //DamageEffect
-
+    float rote;
+    Vector3 result;
     void Start()
     {
         hp = MaxHp;
@@ -36,14 +32,12 @@ public class EnemyAction : MonoBehaviour
         capture = enemySearch.IsCapture;
         if (capture == false)
         {
-            // rb.AddForce(this.transform.forward * speed);
             rb.velocity = this.transform.forward * speed;
             animator.SetBool("walk", true);
         }
         else
         {
             PlayerLook();
-            // rb.AddForce(transform.forward * 0.0f);
             rb.velocity = Vector3.zero;
 
             animator.SetBool("walk", false);
@@ -60,6 +54,34 @@ public class EnemyAction : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if (other.gameObject.tag == "FildOBJ" || other.gameObject.tag == "FildOBJ")
+        {
+            // 入射ベクトル（速度）
+            var inDirection = rb.velocity;
+            // 法線ベクトル
+            var inNormal = transform.up;
+            // 反射ベクトル（速度）
+            result = Vector3.Reflect(inDirection, inNormal);
+        }
+    }
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "FildOBJ" || other.gameObject.tag == "OBJ")
+        {
+            if (result.y < 90.0f)
+            {
+                rote = 3.0f;
+            }
+            else if (result.y >= 90.0f)
+            {
+                rote = -3.0f;
+            }
+            this.transform.Rotate(0, rote, 0);
+
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.gameObject.tag == "Bullet")
         {
             bulletATK = other.gameObject.GetComponent<Bullet>();
@@ -68,22 +90,6 @@ public class EnemyAction : MonoBehaviour
             {
                 Destroy(this.gameObject);
             }
-
-        }
-
-        if (other.gameObject.tag == "bullet")
-        {
-            // float effectPosZ = transform.position.z + 2;
-            // Vector3 effectPos = new Vector3(transform.position.x, transform.position.y, effectPosZ);
-            // Instantiate(effectPrefab, effectPos, transform.rotation);
-            Instantiate(effectPrefab, transform.position, transform.rotation);
-        }
-    }
-    private void OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.tag == "FildOBJ")
-        {
-            this.transform.Rotate(0, 3, 0);
         }
     }
 }

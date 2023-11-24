@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3126493686185440704}
   - component: {fileID: 3126493686186243552}
   - component: {fileID: 3126493686187210528}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 3126493686185440706}
   - component: {fileID: 331841936837199074}
   - component: {fileID: 766655073768735366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BreakOBJ2
-  m_TagString: Untagged
+  m_TagString: OBJ
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,8 +110,8 @@ Transform:
   m_GameObject: {fileID: 3126493686185208290}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 11, y: 11, z: 11}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3126493686185440704}
   - {fileID: 3126493686185440708}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 3126493686185440708}
   - component: {fileID: 3126493686186243554}
   - component: {fileID: 3126493686187210530}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 3126493686185440710}
   - component: {fileID: 3126493686186243556}
   - component: {fileID: 3126493686187210532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire_Rear
   m_TagString: Untagged
   m_Icon: {fileID: 0}

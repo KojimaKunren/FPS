@@ -16,15 +16,15 @@ public class NobreakOBJ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Breaker();
+        StartCoroutine(Breaker());
         if (isTimerBreak)
         {
-            Destroy(this.transform.parent);
+            Destroy(this.transform.parent.gameObject);
         }
     }
     IEnumerator Breaker()
     {
-        yield return new WaitForSeconds(180.0f);
+        yield return new WaitForSeconds(20.0f);
         OBJ = gameObject.GetComponent<OBJDirector>();
         isTimerBreak = true;
     }

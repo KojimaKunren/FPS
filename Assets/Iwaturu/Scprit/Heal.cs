@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Heal : MonoBehaviour
 {
-    int HealHP;
+    public int HealHP;
     // Start is called before the first frame update
 
     private void OnCollisionEnter(Collision other)
@@ -12,7 +12,7 @@ public class Heal : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             HealHP = 100;
-            Destroy(transform.parent);
+            Destroy(transform.parent.gameObject);
         }
     }
 }

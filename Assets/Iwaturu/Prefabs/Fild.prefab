@@ -6860,6 +6860,7 @@ GameObject:
   - component: {fileID: 5079850031198776877}
   - component: {fileID: 5079850031198776876}
   - component: {fileID: 5079850031198776879}
+  - component: {fileID: 5387568143853473062}
   m_Layer: 0
   m_Name: Gound
   m_TagString: Ground
@@ -6945,6 +6946,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5387568143853473062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5079850031198776878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79eedeac7714af246b47a2b62b3b3881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 0, y: 0, z: 0}
 --- !u!1 &5088142643831317839
 GameObject:
   m_ObjectHideFlags: 0

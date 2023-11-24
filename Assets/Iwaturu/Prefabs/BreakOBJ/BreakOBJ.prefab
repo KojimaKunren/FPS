@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8767093522357568704}
   - component: {fileID: 8767093522360960230}
   - component: {fileID: 8767093522359993894}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8767093522357568706}
   - component: {fileID: 8767093522360960224}
   - component: {fileID: 8767093522359993888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tire_Rear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8767093522357568708}
   - component: {fileID: 8767093522360960228}
   - component: {fileID: 8767093522359993892}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,9 +260,9 @@ GameObject:
   - component: {fileID: 8767093522357568710}
   - component: {fileID: 466234764656500719}
   - component: {fileID: 9070405419474413043}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BreakOBJ
-  m_TagString: Untagged
+  m_TagString: OBJ
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,8 +276,8 @@ Transform:
   m_GameObject: {fileID: 8767093522358065382}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 11, y: 11, z: 11}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8767093522357568708}
   - {fileID: 8767093522357568704}
