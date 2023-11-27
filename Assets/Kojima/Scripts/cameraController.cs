@@ -18,8 +18,8 @@ public class cameraController : MonoBehaviour
 
     void Update()
     {
-        rotationY += Input.GetAxis("Mouse X");
-        rotationX += Input.GetAxis("Mouse Y");
+        rotationY += Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+        rotationX += Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
     }
 
     void FixedUpdate()

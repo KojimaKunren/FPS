@@ -13,6 +13,9 @@ TagManager:
   - Enemy
   - Inbound
   - Score
+  - FildOBJ
+  - OBJ
+  - Heal
   layers:
   - Default
   - TransparentFX

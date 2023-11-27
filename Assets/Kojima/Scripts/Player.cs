@@ -45,6 +45,8 @@ public class Player : MonoBehaviour
 
     Vector3 cameraPosition; //視点カメラの位置取得用
 
+    Quaternion cameraRotation;
+
     bool isDead; //生死判定
 
     bool isJump; //ジャンプの判定
@@ -72,7 +74,7 @@ public class Player : MonoBehaviour
         playerScale = transform.localScale; //プレイヤーの初期サイズを保存
         scaleY = playerScale.y; //プレイヤーのY縦初期サイズを保存
 
-        cameraPosition = playerCamera.transform.position; //視点カメラの初期位置を保存
+        cameraPosition = playerCamera.transform.localPosition; //視点カメラの初期位置を保存
         offsetZ = transform.position.z - playerCamera.transform.position.z; //プレイヤーとカメラの差を保存
 
         isDead = false; //生死判定をFalseに
@@ -88,9 +90,11 @@ public class Player : MonoBehaviour
     {
         positionX = Input.GetAxis("Horizontal"); //入力の水平値を取得
         positionZ = Input.GetAxis("Vertical"); //入力の垂直値を取得
-        rotationX += Input.GetAxis("Mouse X") * speedRotation * Time.deltaTime; //マウスの水平値を取得（プレイヤー回転用）
-        playerRotation = new Vector3(0.0f, rotationX, 0.0f); //プレイヤーの横回転値を取得
-        transform.rotation = Quaternion.Euler(playerRotation); //プレイヤーの横回転を実行
+        // rotationX += Input.GetAxis("Mouse X") * speedRotation * Time.deltaTime; //マウスの水平値を取得（プレイヤー回転用）
+        // playerRotation = new Vector3(0.0f, rotationX, 0.0f); //プレイヤーの横回転値を取得
+        // transform.rotation = Quaternion.Euler(playerRotation); //プレイヤーの横回転を実行
+        rotationX += playerCamera.transform.rotation.eulerAngles.x;
+        transform.rotation = Quaternion.Euler(0.0f, rotationX, 0.0f);
 
         //ジャンプ
         if (Input.GetKeyDown("space") && !isJump)
@@ -209,16 +213,18 @@ public class Player : MonoBehaviour
         }
 
         //スコア獲得用処理
-        // if (other.gameObject.tag == "Score")
-        // {
-        //     score += other.gameObject.score;
-        // }
+        if (other.gameObject.tag == "Score")
+        {
+            Item item = other.gameObject.GetComponent<Item>();
+            score += item.score;
+        }
 
         //リカバリーアイテム獲得処理
-        // if(other.gameObject.tag == "Heal"){
-        //     healHp = other.gameObject.GetComponent<HealObj>().HealHP;
-        //     hp = healHp;
-        // }
+        if (other.gameObject.tag == "Heal")
+        {
+            Heal heal = other.gameObject.GetComponent<Heal>();
+            hp += heal.HealHP;
+        }
 
     }
 

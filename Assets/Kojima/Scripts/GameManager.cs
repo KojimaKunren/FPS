@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
         {
             EndGame();
             Destroy(playerObject);
+            //playerの位置を取得
+            //playerのアイテム
             gameOverTextPanel.SetActive(true);
             return;
         }
