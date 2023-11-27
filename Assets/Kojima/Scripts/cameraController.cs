@@ -20,12 +20,9 @@ public class cameraController : MonoBehaviour
     {
         rotationY += Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
         rotationX += Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
-    }
-
-    void FixedUpdate()
-    {
         transform.rotation = Quaternion.Euler(-rotationX, rotationY, 0.0f);
     }
+
 
     // void OnTriggerEnter(Collider other)
     // {
