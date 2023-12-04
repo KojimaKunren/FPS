@@ -5,27 +5,36 @@ using UnityEngine;
 public class NobreakOBJ : MonoBehaviour
 {
     OBJDirector OBJ;
+    Vector3 size;
     bool isTimerBreak;
 
-    // Start is called before the first frame update
     void Start()
     {
+        OBJ = transform.parent.gameObject.GetComponent<OBJDirector>();
+        size = transform.parent.parent.GetComponent<OBJManager>().size;
         isTimerBreak = false;
     }
-
-    // Update is called once per frame
     void Update()
     {
         StartCoroutine(Breaker());
+
         if (isTimerBreak)
         {
-            Destroy(this.transform.parent.gameObject);
+            Destroy(gameObject);
         }
     }
     IEnumerator Breaker()
     {
-        yield return new WaitForSeconds(20.0f);
-        OBJ = gameObject.GetComponent<OBJDirector>();
+        yield return new WaitForSeconds(OBJ.coroTime);
         isTimerBreak = true;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "OBJ" || other.gameObject.tag == "FildOBJ")
+        {
+            float rangeX = Random.Range(-(size.x / 2.0f), size.x / 2.0f);
+            float rangeZ = Random.Range(-(size.z / 2.0f), size.z / 2.0f);
+            transform.parent.position = new Vector3(rangeX, transform.position.y, rangeZ);
+        }
     }
 }

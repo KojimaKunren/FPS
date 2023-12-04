@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySearch : MonoBehaviour
 {
-    public bool IsCapture;
+    [HideInInspector] public bool IsCapture;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,7 +24,6 @@ public class EnemySearch : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            // Debug.Log($"isKabe:{isKabe}");
             IsCapture = true;
         }
 

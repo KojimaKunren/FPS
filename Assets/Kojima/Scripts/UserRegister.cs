@@ -4,18 +4,19 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class UserEntry : MonoBehaviour
+public class UserRegister : MonoBehaviour
 {
     User user;
 
     [SerializeField] private InputField nameInput;
     [SerializeField] private InputField passInput;
 
+    [SerializeField] private GameObject userObject;
+
     string name;
     string pass;
     string date;
-
-
+    List<User> scores;
 
     public void SendEntryUser()
     {
@@ -31,11 +32,11 @@ public class UserEntry : MonoBehaviour
 
     public IEnumerator Entry_User()
     {
-        string url = "http://localhost/fps/register_user.py";
+        string url = "http://localhost/fps/regist_user.py";
 
         WWWForm form = new WWWForm();
-        form.AddField("player_name", name);
-        form.AddField("player_pass", pass);
+        form.AddField("user_name", name);
+        form.AddField("user_pass", pass);
         form.AddField("created_date", date);
 
         using (UnityWebRequest uwr = UnityWebRequest.Post(url, form))
@@ -53,13 +54,21 @@ public class UserEntry : MonoBehaviour
 
     void SetUser()
     {
-        int[] scores = new int[] { 000, 000, 000 };
-        int totalTime = 00;
+        for (int i = 0; i <= 2; i++)
+        {
+            User userdata = new User();
+            userdata.SetScore(00000);
+            userdata.SetTotalTime(0.0f);
+            userdata.SetPlayerTagCount(0);
+            scores.Add(userdata);
+        }
 
-        int playerTagScore = 00;
+        User loginUser = userObject.GetComponent<User>();
+        loginUser.SetUserName(name);
+        loginUser.SetScores(scores);
+        loginUser.SetTotalTime(0.0f);
+        loginUser.SetPlayerTagCount(0);
 
-
-        user = new User(name, scores, totalTime, playerTagScore);
-        DontDestroyOnLoad(user);
+        DontDestroyOnLoad(loginUser);
     }
 }

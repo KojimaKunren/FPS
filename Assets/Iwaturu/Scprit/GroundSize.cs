@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class GroundSize : MonoBehaviour
 {
-    public Vector3 size;
-    // Start is called before the first frame update
+    [HideInInspector] public Vector3 size;
     void Awake()
     {
         size = GetComponent<MeshRenderer>().bounds.size;
-        // Debug.Log(size);
-
-    }
-    // Update is called once per frame
-    void Update()
-    {
 
     }
 }

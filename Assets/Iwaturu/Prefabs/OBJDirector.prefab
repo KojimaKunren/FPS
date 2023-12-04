@@ -45,13 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OBJbreak: 0
-  itemDropPrefabs: {fileID: 6913495778555650430, guid: 00b9995f9da25d64da0a54198a10020f, type: 3}
+  itemDropPrefabs:
+  - {fileID: 6913495778555650430, guid: 00b9995f9da25d64da0a54198a10020f, type: 3}
   OBJPrefabs:
   - {fileID: 8767093522358065382, guid: a54bbd2462275634d85385fe88825265, type: 3}
   - {fileID: 3126493686185208290, guid: 85d57f66c594109428d946e039359a90, type: 3}
   - {fileID: 170728982137280842, guid: a23daf7be80e02649bb764e431b1d2be, type: 3}
   NoOBJPrefabs:
-  - {fileID: 8767093522358065382, guid: 7776b0e2717db314b80c3112cc1691f2, type: 3}
-  - {fileID: 3126493686185208290, guid: 9b5d02492a806674d8d45d187f9d16b9, type: 3}
-  - {fileID: 170728982137280842, guid: 5a56b306659d66140a95e577435e5029, type: 3}
+  - {fileID: 4924226070799312777, guid: b5b28e4dda6dd2c45b2f87b2bd26f856, type: 3}
+  - {fileID: 7191848958926519286, guid: 70a91c44089d09e4eabb9662e75a083a, type: 3}
+  - {fileID: 6309421933537922922, guid: 7193bb38a390a7240a288f9a1f2e0388, type: 3}
   OBJHP: 0
+  coroTime: 0

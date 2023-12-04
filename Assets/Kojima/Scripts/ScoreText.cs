@@ -12,7 +12,7 @@ public class ScoreText : MonoBehaviour
 
     void Start()
     {
-        scoreText = this.GetComponent<Text>(); //スコアテキストのテキストコンポーネントを取得
+        scoreText = GetComponent<Text>();
     }
 
     void Update()

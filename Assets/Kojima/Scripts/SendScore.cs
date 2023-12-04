@@ -5,11 +5,23 @@ using UnityEngine.Networking;
 
 public class SendScore : MonoBehaviour
 {
-    public IEnumerator SendingScore()
+    bool isSucceeded = false;
+    public void SendScoreStart(User user)
     {
-        string url = "http://localhost/FPS/send_score.py";
+        StartCoroutine(SendingScore(user));
+    }
+    public IEnumerator SendingScore(User user)
+    {
+
+        string url = "http://localhost/FPS/save_score.py";
         WWWForm form = new WWWForm();
-        form.AddField("score", PlayerPrefs.GetInt("HighScore"));
+        form.AddField("user_name", user.GetUserName());
+        form.AddField("score", PlayerPrefs.GetInt("score"));
+        form.AddField("kill_cnt", PlayerPrefs.GetInt("tagcount"));
+        form.AddField("kill_score", PlayerPrefs.GetInt("tagscore"));
+        form.AddField("time_score", (int)PlayerPrefs.GetFloat("time") * 100);
+        form.AddField("item_score", PlayerPrefs.GetInt("score") - PlayerPrefs.GetInt("tagscore"));
+        form.AddField("item_cnt", 0);
 
         using (UnityWebRequest uwr = UnityWebRequest.Post(url, form))
         {
@@ -22,6 +34,12 @@ public class SendScore : MonoBehaviour
                     Debug.LogError("Error: " + uwr.error);
                     break;
             }
+            isSucceeded = true;
         }
+    }
+
+    public bool GetSucceeded()
+    {
+        return isSucceeded;
     }
 }

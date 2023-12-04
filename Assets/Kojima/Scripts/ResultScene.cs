@@ -10,12 +10,22 @@ public class ResultScene : MonoBehaviour
 {
     int currentScore;
 
+    int currentPlayerTagScore;
+
+    int currentPlayerTagCount;
+
     float currentTime;
 
-    int[] scores;
+    List<User> scores;
+
+    User user;
 
     [SerializeField] private Text userNameText;
     [SerializeField] private Text scoreText;
+
+    [SerializeField] private Text playerTagScoreText;
+
+    [SerializeField] private Text playerTagCountText;
     [SerializeField] private Text timeText;
 
     [SerializeField] private GameObject newRecordPanel;
@@ -26,22 +36,27 @@ public class ResultScene : MonoBehaviour
     void Start()
     {
         //プレイヤー名表示
-        userNameText = gameObject.GetComponent<Text>();
-        userNameText.text = GetComponent<User>().GetUserName();
+        user = GameObject.Find("UserDataObject").GetComponent<User>();
+        userNameText.text = user.GetUserName();
+        Debug.Log($"name:{user.GetUserName()}");
 
         //今回のゲームスコアを表示
         currentScore = PlayerPrefs.GetInt("score");
-        scoreText = gameObject.GetComponent<Text>();
         scoreText.text = ($"Current Score: {currentScore}");
 
+        currentPlayerTagCount = PlayerPrefs.GetInt("tagcount");
+        playerTagCountText.text = ($"Player Tag: {currentPlayerTagCount}");
+
+        currentPlayerTagScore = PlayerPrefs.GetInt("tagscore");
+        playerTagScoreText.text = ($"Current PlayerTagScore: {currentPlayerTagScore}");
+
         currentTime = PlayerPrefs.GetFloat("time");
-        timeText = gameObject.GetComponent<Text>();
         int minutes = (int)currentTime / 60;
         float seconds = currentTime % 60.0f;
         timeText.text = ($"Current Survival Time: {minutes}:{seconds}");
 
-        scores = GetComponent<User>().GetScores();
-        scores = CalcHighScore();
+        scores = user.GetScores();
+        // scores = CalcHighScore();
 
         if (CheckNewRecord())
         {
@@ -49,32 +64,33 @@ public class ResultScene : MonoBehaviour
         }
     }
 
-    int[] CalcHighScore()
-    {
-        int[] newscores = new int[3];
-        List<int> highscores = new List<int>();
-        foreach (int s in scores)
-        {
-            highscores.Add(s);
-        }
-        highscores.Add(currentScore);
+    //ハイスコア生成用
+    // int[] CalcHighScore()
+    // {
+    //     int[] newscores = new int[3];
+    //     List<int> highscores = new List<int>();
+    //     foreach (int s in scores)
+    //     {
+    //         highscores.Add(s);
+    //     }
+    //     highscores.Add(currentScore);
 
-        for (int i = 0; i < 3; i++)
-        {
-            int highscore = highscores.Max();
-            newscores.Append(highscore);
-            highscores.Remove(i);
-        }
+    //     for (int i = 0; i < 3; i++)
+    //     {
+    //         int highscore = highscores.Max();
+    //         newscores.Append(highscore);
+    //         highscores.Remove(i);
+    //     }
 
-        scores = newscores;
+    //     scores = newscores;
 
-        return scores;
-    }
+    //     return scores;
+    // }
 
     bool CheckNewRecord()
     {
         bool isNewRecord = false;
-        if (currentScore > scores[0])
+        if (currentScore > scores[0].GetScore(0)) ;
         {
             isNewRecord = true;
         }

@@ -6,49 +6,50 @@ using UnityEngine.UIElements;
 
 public class OBJDirector : MonoBehaviour
 {
-    OBJDestroy OBJDestroy;
+    public GameObject[] itemDropPrefabs, OBJPrefabs, NoOBJPrefabs;
+    [HideInInspector] public int OBJHP;
+    [HideInInspector] public float coroTime;
     bool isTimerBreak;
-    public int OBJbreak;
-    int rand;
-    int index;
-    public GameObject itemDropPrefabs;
-    public GameObject[] OBJPrefabs;
-    public GameObject[] NoOBJPrefabs;
+    int rot;
 
-    public int OBJHP;
-
-    void Start()
+    private void Awake()
     {
-        OBJbreak = 10000;
-        var parent = this.transform;
-        rand = Random.Range(0, 100);
+        rot = transform.parent.GetComponent<OBJManager>().Yrand;
+        coroTime = transform.parent.GetComponent<OBJManager>().coroTime;
+        int rand = Random.Range(0, 100);
         if (rand < 40)
         {
-            index = Random.Range(0, OBJPrefabs.Length);
-            GameObject item = Instantiate(OBJPrefabs[index], transform.position,
-                Quaternion.Euler(0, 0, 0), parent);
-            OBJDestroy = this.transform.GetChild(0).GetComponent<OBJDestroy>();
-            OBJHP = OBJDestroy.MAXHP;
-            isTimerBreak = OBJDestroy.isTimerBreak;
+            Instans(OBJPrefabs);
         }
         else
         {
-            index = Random.Range(0, NoOBJPrefabs.Length);
-            GameObject item = Instantiate(NoOBJPrefabs[index], transform.position,
-                Quaternion.Euler(0, 0, 0), parent);
+            Instans(NoOBJPrefabs);
+        }
+    }
+    private void Update()
+    {
+        if (transform.childCount <= 0)
+        {
+            Destroy(gameObject);
         }
     }
     public void Drop()
     {
         if (isTimerBreak == false)
         {
-            var parent = this.transform;
-            GameObject item = (GameObject)Instantiate(itemDropPrefabs, transform.position,
-                Quaternion.Euler(0, 0, 0), parent);
+            Instans(itemDropPrefabs);
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+    }
+    public void SetOBJHp(int hp, bool timerB)
+    {
+        OBJHP = hp;
+        isTimerBreak = timerB;
+    }
+    void Instans(GameObject[] prefab)
+    {
+        var parent = transform;
+        int index = Random.Range(0, prefab.Length);
+
+        Instantiate(prefab[index], transform.position, Quaternion.Euler(0, rot, 0), parent);
     }
 }

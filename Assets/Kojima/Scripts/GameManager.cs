@@ -4,9 +4,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph;
 
 public class GameManager : MonoBehaviour
 {
+    User user;
     Player player;
     public GameObject playerObject;
     public GameObject mainCanvas;
@@ -16,6 +18,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameClearTextPanel;
 
+    [SerializeField] private Text nameText;
+    [SerializeField] private Text scoreText;
+
+    public GameObject itemPrefabs;
+
     public float timer;
 
     public Text countdownText;
@@ -23,15 +30,25 @@ public class GameManager : MonoBehaviour
     int minute;
     int seconds;
 
-
     public Color endColor;
+
+    bool isSendData = false;
+
+    SendScore sendscore;
+
     void Start()
     {
         mainCanvas.gameObject.SetActive(true);
+        nameText.gameObject.SetActive(true);
+        scoreText.gameObject.SetActive(true);
         gameEndCanvas.SetActive(false); //ゲームーオーバー用キャンバスをオフに
         gameOverTextPanel.SetActive(false);
         gameClearTextPanel.SetActive(false);
         player = playerObject.gameObject.GetComponent<Player>();
+        user = GameObject.Find("UserDataObject").GetComponent<User>();
+        nameText.text = user.GetUserName();
+        endColor = Color.red;
+        sendscore = GetComponent<SendScore>();
     }
 
     void Update()
@@ -42,10 +59,9 @@ public class GameManager : MonoBehaviour
         if (player.IsDead())
         {
             EndGame();
-            Destroy(playerObject);
-            //playerの位置を取得
-            //playerのアイテム
             gameOverTextPanel.SetActive(true);
+            Destroy(playerObject);
+            DropPlayerTag();
             return;
         }
 
@@ -54,23 +70,46 @@ public class GameManager : MonoBehaviour
             EndGame();
             gameClearTextPanel.SetActive(true);
         }
+
+        isSendData = sendscore.GetSucceeded();
+        if (isSendData)
+        {
+            Invoke("MoveResult", 3.0f);
+        }
     }
-
-    //ゲームオーバーボタン設定用
-    // public void OnGameOverButtonClicked()
-    // {
-    //     SceneManager.LoadScene("GameOver");
-
-    // }
 
     public void EndGame()
     {
         PlayerPrefs.SetFloat("time", timer);
         PlayerPrefs.SetInt("score", player.GetScore());
+        PlayerPrefs.SetInt("tagcount", player.GetPlayerTagCount());
+        PlayerPrefs.SetInt("tagscore", player.GetPlayerTagScore());
         Cursor.lockState = CursorLockMode.None;
         enabled = false;
         gameEndCanvas.SetActive(true);
-        Invoke("MoveResult", 3.0f);
+        sendscore.SendScoreStart(user);
+    }
+
+    //プレイヤータグドロップ
+    void DropPlayerTag()
+    {
+        Transform itemDropTransform = player.transform;
+        //プレイヤーのアイテムドロップ処理
+        Drop(itemDropTransform);
+
+    }
+
+    void Drop(Transform currentTransform)
+    {
+        var parent = currentTransform;
+        float rangeXZ = Random.Range(1.5f, 2f);
+        float randX = Random.Range(-rangeXZ, rangeXZ);
+        float randZ = Random.Range(-rangeXZ, rangeXZ);
+        GameObject item = Instantiate(itemPrefabs, transform.position + new Vector3(0, 2f, 0),
+            Quaternion.Euler(-90, 0, 0), parent);
+        Rigidbody rd = item.GetComponent<Rigidbody>();
+        rd.AddForce(new Vector3(randX, 7f, randZ), ForceMode.Impulse);
+
     }
 
     public void MoveResult()
@@ -98,4 +137,5 @@ public class GameManager : MonoBehaviour
             countdownText.color = endColor;
         }
     }
+
 }

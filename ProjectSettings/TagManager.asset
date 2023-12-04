@@ -16,6 +16,8 @@ TagManager:
   - FildOBJ
   - OBJ
   - Heal
+  - Undefined
+  - EnemyScore
   layers:
   - Default
   - TransparentFX
@@ -23,13 +25,13 @@ TagManager:
   - 
   - Water
   - UI
-  - bullet
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Bullet
+  - Player
+  - OBJ
+  - Item
+  - Ground
+  - Enemy
+  - EnemyBullet
   - 
   - 
   - 

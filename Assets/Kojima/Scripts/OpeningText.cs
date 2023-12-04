@@ -19,7 +19,7 @@ public class OpeningText : MonoBehaviour
         imagePanel.gameObject.SetActive(false);
         buttonPanel.gameObject.SetActive(false);
         tmpText = tmpText.gameObject.GetComponent<TextMeshProUGUI>();
-        textList = new string[] { "0607PM/2 Studio", "Iwatsuru", "Jinnouchi", "and Kojima", "3", "2", "1" };
+        textList = new string[] { "0607PM/2 Studio", $"Iwatsuru", "Jinnouchi", "and Kojima" };
         StartCoroutine(ChangeText());
         StartCoroutine(SetImage());
         StartCoroutine(SetButton());

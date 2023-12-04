@@ -13,7 +13,7 @@ public class cameraController : MonoBehaviour
 
     void Start()
     {
-        initPosition = GetComponent<Transform>().localPosition;
+        initPosition = GetComponent<Transform>().position;
     }
 
     void Update()

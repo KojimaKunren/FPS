@@ -5,70 +5,65 @@ using UnityEngine;
 
 public class OBJDestroy : MonoBehaviour
 {
+    [HideInInspector] public int MAXHP;
+    [HideInInspector] public bool isTimerBreak;
+    int HP, breakDamage;
     Bullet BulletATK;
     OBJDirector OBJ;
-    int[] HPs = new int[] { 50, 100, 300, 700, 1000 };
-    int HP;
-    public int MAXHP;
-    public bool isTimerBreak;
-    int breakDamage;
-    Vector3 Object;
-
-    float Gravity;
+    Vector3 Object, size;
 
     private void Awake()
     {
         OBJ = transform.parent.GetComponent<OBJDirector>();
         Object = gameObject.GetComponent<Transform>().position;
-        Gravity = -1;
+        size = transform.parent.parent.GetComponent<OBJManager>().size;
+
     }
 
     private void Start()
     {
         isTimerBreak = false;
-        Debug.Log($"start:{isTimerBreak}");
         breakDamage = 0;
-        int index = Random.Range(0, HPs.Length);
-        MAXHP = HPs[index];
+        MAXHP = Random.Range(1, 7) * 100;
         HP = MAXHP;
-
+        transform.parent.GetComponent<OBJDirector>().SetOBJHp(MAXHP, isTimerBreak);
     }
 
     private void Update()
     {
         StartCoroutine(Breaker());
+        Breaker();
         Object = new Vector3(Object.x, Object.y - 1, Object.z);
         HP -= breakDamage;
         if (isTimerBreak)
         {
-            isTimerBreak = true;
-            Destroy(this.transform.parent.gameObject);
+            Destroy(gameObject);
         }
 
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        Gravity = -0.001f;
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "bullet")
         {
             BulletATK = other.gameObject.GetComponent<Bullet>();
             HP -= BulletATK.attack;
-            if (HP <= 0 || HP >= -999)
+            if (HP <= 0 && HP >= -99)
             {
                 OBJ.Drop();
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
+        }
+        if (other.gameObject.tag == "OBJ" || other.gameObject.tag == "FildOBJ")
+        {
+            float rangeX = Random.Range(-(size.x / 2.0f) - 2.05f, size.x / 2.0f - 2.05f);
+            float rangeZ = Random.Range(-(size.z / 2) + 1.06f, size.z / 2 + 1.06f);
+            transform.parent.position = new Vector3(rangeX, transform.position.y, rangeZ);
         }
     }
     IEnumerator Breaker()
     {
-        yield return new WaitForSeconds(20.0f);
+        yield return new WaitForSeconds(OBJ.coroTime);
         isTimerBreak = true;
-        Debug.Log($"IEnumerator: {isTimerBreak}");
-        breakDamage = OBJ.OBJbreak;
     }
 }

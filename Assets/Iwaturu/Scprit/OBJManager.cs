@@ -1,43 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class OBJManager : MonoBehaviour
 {
-    public GameObject OBJDirecterPrefabs;
+    public GameManager GM;
     public MeshRenderer ground;
-    Vector3 size;
-    // Start is called before the first frame update
+    public GameObject OBJDirecterPrefabs, empty;
+    [HideInInspector] public Vector3 size;
+    [HideInInspector] public float coroTime;
+    [HideInInspector] public int Yrand;
+    Vector3 posi, halfExtents;
     void Start()
     {
+        coroTime = /*GM.timer /*/ 30.0f;
+        posi = ground.transform.position;
         size = ground.bounds.size;
-        var parent = this.transform;
-        for (int i = 0; i < 50; i++)
+        halfExtents = empty.GetComponent<BoxCollider>().bounds.size / 2;
+        for (int i = 0; i < 3; i++)
         {
-            float rangex = Random.Range(-(size.x / 2.0f), size.x / 2.0f);
-            float rangez = Random.Range(-(size.z / 2), size.z / 2);
-            GameObject stage = Instantiate(OBJDirecterPrefabs, new Vector3(transform.position.x + rangex, 1f, transform.position.z + rangez),
-                Quaternion.Euler(0, 0, 0), parent);
+            StartCoroutine(StageSet(i));
         }
     }
-    // インスタンスするpositionが別OBJと接触していた場合、再インスタンスをする
-    // forの中にwhileをおいて問題が無くなるまで抽選する
-    void Update()
+    IEnumerator StageSet(int col)
     {
-        StageSet();
-        StageSet();
-    }
-    IEnumerator StageSet()
-    {
-        yield return new WaitForSeconds(180.0f);
-        var parent = this.transform;
-        for (int i = 0; i < 50; i++)
+        yield return new WaitForSeconds(coroTime * col);
+        var parent = transform;
+        int counter = 0;
+        while (counter < 50)
         {
             float rangex = Random.Range(-(size.x / 2.0f), size.x / 2.0f);
-            float rangez = Random.Range(-(size.z / 2), size.z / 2);
-            GameObject stage = Instantiate(OBJDirecterPrefabs, new Vector3(rangex, 1f, rangez),
-                Quaternion.Euler(0, 0, 0), parent);
+            float rangez = Random.Range(-(size.z / 2.0f), size.z / 2.0f);
+            Vector3 vec = new(rangex + posi.x, 0.5f, rangez + posi.z);
+            Yrand = Random.Range(1, 7) * 30;
+            if (!Physics.CheckBox(vec, halfExtents, Quaternion.Euler(0, Yrand, 0), 1 << 12))
+            {
+                Instantiate(OBJDirecterPrefabs, vec, Quaternion.Euler(0, Yrand, 0), parent);
+                counter++;
+            }
         }
     }
 }
+
