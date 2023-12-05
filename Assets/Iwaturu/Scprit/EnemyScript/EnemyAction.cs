@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
 public class EnemyAction : MonoBehaviour
 {
     const int MaxHp = 100;
-    [HideInInspector] public int hp;
+    [HideInInspector] public int hp, index;
     public float speed;
     float rote;
     bool capture;
@@ -15,9 +16,13 @@ public class EnemyAction : MonoBehaviour
     Bullet bulletATK;
     Rigidbody rb;
     Animator animator;
-    GameObject target;
+    [HideInInspector] public GameObject[] targets;
     Vector3 result;
 
+    private void Awake()
+    {
+        targets = GameObject.FindGameObjectsWithTag("Player");
+    }
     void Start()
     {
         hp = MaxHp;
@@ -25,7 +30,6 @@ public class EnemyAction : MonoBehaviour
         enemySearch = transform.GetChild(0).GetComponent<EnemySearch>();
         rb = GetComponent<Rigidbody>();
         animator = gameObject.GetComponent<Animator>();
-        target = GameObject.FindGameObjectWithTag("Player");
     }
     void Update()
     {
@@ -37,16 +41,21 @@ public class EnemyAction : MonoBehaviour
         }
         else
         {
-            PlayerLook();
+            index = enemySearch.index;
+            PlayerLook(index);
             rb.velocity = Vector3.zero;
 
             animator.SetBool("walk", false);
         }
+        if (targets.Length <= 0)
+        {
+            Destroy(this.transform.parent.gameObject);
+        }
     }
 
-    public void PlayerLook()
+    public void PlayerLook(int index)
     {
-        Vector3 relativePos = target.transform.position - transform.position;
+        Vector3 relativePos = targets[index].transform.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1.0f);
     }

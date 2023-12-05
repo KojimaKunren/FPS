@@ -15,6 +15,7 @@ public class ResultScene : MonoBehaviour
     int currentPlayerTagCount;
 
     float currentTime;
+    float initTime;
 
     List<User> scores;
 
@@ -38,7 +39,6 @@ public class ResultScene : MonoBehaviour
         //プレイヤー名表示
         user = GameObject.Find("UserDataObject").GetComponent<User>();
         userNameText.text = user.GetUserName();
-        Debug.Log($"name:{user.GetUserName()}");
 
         //今回のゲームスコアを表示
         currentScore = PlayerPrefs.GetInt("score");
@@ -51,8 +51,9 @@ public class ResultScene : MonoBehaviour
         playerTagScoreText.text = ($"Current PlayerTagScore: {currentPlayerTagScore}");
 
         currentTime = PlayerPrefs.GetFloat("time");
-        int minutes = (int)currentTime / 60;
-        float seconds = currentTime % 60.0f;
+        initTime = PlayerPrefs.GetFloat("initTime");
+        int minutes = (int)((initTime - currentTime) / 60.0f);
+        int seconds = (int)((initTime - currentTime) % 60.0f);
         timeText.text = ($"Current Survival Time: {minutes}:{seconds}");
 
         scores = user.GetScores();
@@ -90,7 +91,7 @@ public class ResultScene : MonoBehaviour
     bool CheckNewRecord()
     {
         bool isNewRecord = false;
-        if (currentScore > scores[0].GetScore(0)) ;
+        if (currentScore > scores[0].GetScore())
         {
             isNewRecord = true;
         }

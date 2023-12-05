@@ -30,7 +30,11 @@ public class ShowScores : MonoBehaviour
 
     public void makeScores()
     {
-        scoreText.text = $"HighScore1: {user.GetScore(0)} \n HighScore2: {user.GetScore(1)} \n HighScore3: {user.GetScore(2)} \n \n TotalTime: {user.GetTotalTime()} \n PlayerTag: {user.GetPlayerTagCount()}";
+        int minutes = (int)(user.GetTotalTime() / 60.0f);
+        int hours = minutes / 60;
+        minutes = minutes % 60;
+        int seconds = (int)(user.GetTotalTime() % 60.0f);
+        scoreText.text = $"HighScore1: {user.GetScoreOne(0)} \n HighScore2: {user.GetScoreOne(1)} \n HighScore3: {user.GetScoreOne(2)} \n \n TotalTime: {hours}:{minutes}:{seconds} \n PlayerTag: {user.GetPlayerTagCount()}";
     }
 
 }

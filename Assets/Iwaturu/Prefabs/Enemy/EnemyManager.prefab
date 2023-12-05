@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4326608293727661253, guid: 6e6475412bb0eb94c898933e899e06b7, type: 3}
+  empty: {fileID: 5111730244626374254, guid: 6fa735cf5d9fb014fba1b0742b3a14a2, type: 3}
   ground: {fileID: 8039459847685030615, guid: 76c70a8765b233b44899890cfd8db82e, type: 3}
-  size: {x: 0, y: 0, z: 0}
   GM: {fileID: 0}
+  size: {x: 0, y: 0, z: 0}

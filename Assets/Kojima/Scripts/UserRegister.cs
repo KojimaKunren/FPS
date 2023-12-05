@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UserRegister : MonoBehaviour
 {
-    User user;
-
     [SerializeField] private InputField nameInput;
     [SerializeField] private InputField passInput;
 
@@ -16,12 +15,11 @@ public class UserRegister : MonoBehaviour
     string name;
     string pass;
     string date;
-    List<User> scores;
+    List<User> scores = new List<User>();
 
     public void SendEntryUser()
     {
         StartCoroutine(Entry_User());
-        SetUser();
     }
     public void Inputdata()
     {
@@ -50,6 +48,8 @@ public class UserRegister : MonoBehaviour
                     break;
             }
         }
+
+        SetUser();
     }
 
     void SetUser()
@@ -70,5 +70,6 @@ public class UserRegister : MonoBehaviour
         loginUser.SetPlayerTagCount(0);
 
         DontDestroyOnLoad(loginUser);
+        SceneManager.LoadScene("Lobby");
     }
 }

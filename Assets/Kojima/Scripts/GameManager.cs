@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
 
     public Color endColor;
 
-    bool isSendData = false;
 
     SendScore sendscore;
 
@@ -49,6 +48,7 @@ public class GameManager : MonoBehaviour
         nameText.text = user.GetUserName();
         endColor = Color.red;
         sendscore = GetComponent<SendScore>();
+        PlayerPrefs.SetFloat("initTime", timer);
     }
 
     void Update()
@@ -71,11 +71,6 @@ public class GameManager : MonoBehaviour
             gameClearTextPanel.SetActive(true);
         }
 
-        isSendData = sendscore.GetSucceeded();
-        if (isSendData)
-        {
-            Invoke("MoveResult", 3.0f);
-        }
     }
 
     public void EndGame()
@@ -88,7 +83,9 @@ public class GameManager : MonoBehaviour
         enabled = false;
         gameEndCanvas.SetActive(true);
         sendscore.SendScoreStart(user);
+        Invoke("MoveResult", 3.0f);
     }
+
 
     //プレイヤータグドロップ
     void DropPlayerTag()

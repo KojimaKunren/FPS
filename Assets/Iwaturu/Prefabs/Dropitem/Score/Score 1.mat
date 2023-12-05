@@ -11,9 +11,10 @@ Material:
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords:
   - _ALPHABLEND_ON
+  - _EMISSION
   - _NORMALMAP
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
@@ -79,5 +80,5 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 0.7754717, b: 0.4386792, a: 1}
-    - _EmissionColor: {r: 0.26666668, g: 0.1882353, b: 0.047058824, a: 1}
+    - _EmissionColor: {r: 0.5943396, g: 0.39509165, b: 0.036445368, a: 1}
   m_BuildTextureStacks: []

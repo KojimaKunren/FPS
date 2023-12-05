@@ -5,7 +5,6 @@ using UnityEngine.Networking;
 
 public class SendScore : MonoBehaviour
 {
-    bool isSucceeded = false;
     public void SendScoreStart(User user)
     {
         StartCoroutine(SendingScore(user));
@@ -34,12 +33,6 @@ public class SendScore : MonoBehaviour
                     Debug.LogError("Error: " + uwr.error);
                     break;
             }
-            isSucceeded = true;
         }
-    }
-
-    public bool GetSucceeded()
-    {
-        return isSucceeded;
     }
 }

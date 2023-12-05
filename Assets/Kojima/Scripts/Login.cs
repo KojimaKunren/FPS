@@ -25,6 +25,10 @@ public class Login : MonoBehaviour
 
     void Update()
     {
+        if (isLoginCheck && isScoreCheck)
+        {
+            UnionUser();
+        }
         if (isLoginCheck && isScoreCheck && isUnionCheck)
         {
             SceneManager.LoadScene("Lobby");
@@ -36,10 +40,6 @@ public class Login : MonoBehaviour
     {
         StartCoroutine(Get_user_records());
         StartCoroutine(Login_User());
-        if (isLoginCheck && isScoreCheck)
-        {
-            UnionUser();
-        }
     }
 
 
@@ -98,11 +98,17 @@ public class Login : MonoBehaviour
                     scores = new List<User>();
                     for (int i = 0; i <= 2; i++)
                     {
-                        User scoreUser = _userObject.GetComponent<User>();
+                        User scoreUser = new User();
+                        scoreUser.SetUserName($"User:{i}");
                         scoreUser.SetScore(records.result[i].score);
                         scoreUser.SetSuvivalTime((float)(records.result[i].time_score / 100));
                         scoreUser.SetPlayerTagCount(records.result[i].kill_cnt);
                         scores.Add(scoreUser);
+                        // Debug.Log(scores[0].GetScore());
+                    }
+                    foreach (var item in scores)
+                    {
+                        Debug.Log($"{item.GetUserName()}{item.GetScore()}");
                     }
                     isScoreCheck = true;
                     break;
@@ -118,6 +124,11 @@ public class Login : MonoBehaviour
         unionUser.SetTotalTime(loginUser.GetTotalTime());
         unionUser.SetPlayerTagCount(loginUser.GetPlayerTagCount());
         unionUser.SetScores(scores);
+        foreach (var item in unionUser.GetScores())
+        {
+            // Debug.Log(item.GetScore());
+        }
+        // Debug.Log($"union: {unionUser.GetScores()[2].GetScore()}");
         DontDestroyOnLoad(unionUser);
         isUnionCheck = true;
     }

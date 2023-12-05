@@ -5,7 +5,7 @@ using UnityEngine.SocialPlatforms;
 
 public class EnemyShot : MonoBehaviour
 {
-    public GameObject bulletPerfab;// 弾のプレハブ
+    public GameObject bulletPerfab, enemyPrefab;// 弾のプレハブ /自身の親プレハブ
     public EnemySearch enemySearch;
     public int Maxremainingbullets, remainingbullets, ShotSpeed;//マガジンの装弾数 / マガジン内の残弾 /飛ばす力
     float timer = 0.0f;
@@ -15,6 +15,7 @@ public class EnemyShot : MonoBehaviour
     private void Start()
     {
         remainingbullets = Maxremainingbullets;
+        enemySearch = transform.parent.GetChild(0).GetComponent<EnemySearch>();
     }
 
     // Update is called once per frame

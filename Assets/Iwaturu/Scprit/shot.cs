@@ -8,10 +8,13 @@ public class Shot : MonoBehaviour
     public int Maxremainingbullets, remainingbullets, ShotSpeed;//マガジンの装弾数 / マガジン内の残弾 /飛ばす力
     float timer = 0.0f;
     public float interval;
+    public AudioClip[] sound;
+    AudioSource SE;
 
     private void Start()
     {
         remainingbullets = Maxremainingbullets;
+        SE = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -42,6 +45,7 @@ public class Shot : MonoBehaviour
             );
             Rigidbody bulletOBJ = bullet.GetComponent<Rigidbody>();
             bulletOBJ.AddForce(transform.forward * ShotSpeed);
+            ShotSE();
             remainingbullets -= 1;
         }
         else
@@ -49,9 +53,18 @@ public class Shot : MonoBehaviour
             StartCoroutine(Reload());
         }
     }
+
+    void ShotSE()
+    {
+        for (int i = 0; i < sound.Length; i++)
+        {
+            SE.PlayOneShot(sound[i]);
+        }
+    }
     IEnumerator Reload()
     {
         yield return new WaitForSeconds(3.0f);
         remainingbullets = Maxremainingbullets;
     }
+
 }

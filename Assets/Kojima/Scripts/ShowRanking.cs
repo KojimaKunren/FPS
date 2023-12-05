@@ -20,8 +20,8 @@ public class ShowRanking : MonoBehaviour
     public void Start()
     {
         DeleteScores();
-        ShowingRanking();
         StartCoroutine(GetRanking());
+        ShowingRanking();
     }
 
     public IEnumerator GetRanking()
@@ -41,9 +41,11 @@ public class ShowRanking : MonoBehaviour
                     string responseText = uwr.downloadHandler.text;
                     Ranking ranking = JsonUtility.FromJson<Ranking>(responseText);
                     userScores = ranking.result;
+                    Debug.Log(userScores[0].user_name);
                     break;
             }
         }
+        makeRankingData();
     }
 
 
@@ -58,12 +60,11 @@ public class ShowRanking : MonoBehaviour
         {
             rankingPanel.gameObject.SetActive(false);
         }
-
-        makeRankingData();
     }
 
     void makeRankingData()
     {
+        Debug.Log(userScores.Length);
         for (int i = 0; i < userScores.Length; i++)
         {
             ScoreUser userScore = userScores[i];

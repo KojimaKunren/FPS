@@ -14,18 +14,6 @@ public class User : MonoBehaviour
     int kill_cnt; //1回のキル数
     string time_score; //1回の生存時間
 
-    // void Awake()
-    // {
-    //     DontDestroyOnLoad(this.gameObject);
-    // }
-
-    // public User(string name, int[] scores, float totalTime, int playerTagCount)
-    // {
-    //     this.name = name;
-    //     this.scores = scores;
-    //     this.totalTime = totalTime;
-    //     this.playerTagCount = playerTagCount;
-    // }
 
     public string GetUserName()
     {
@@ -56,9 +44,14 @@ public class User : MonoBehaviour
         this.scores = scores;
     }
 
-    public int GetScore(int i)
+    public int GetScoreOne(int i)
     {
-        return this.scores[i].score;
+        return this.scores[i].GetScore();
+    }
+
+    public int GetScore()
+    {
+        return this.score;
     }
 
     public void SetScore(int score)
