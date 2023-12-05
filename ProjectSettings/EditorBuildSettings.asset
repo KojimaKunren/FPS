@@ -18,10 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: 30d2dd9a2f7dc3c4f930a7f8f89a45e6
   - enabled: 1
-    path: Assets/Scenes/IntegrationScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Main.unity
     guid: 050ce78a04b35424f841190a2fd26692
   - enabled: 1
     path: Assets/Scenes/Result.unity

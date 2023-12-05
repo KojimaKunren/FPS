@@ -1,53 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
+using UnityEngine.Audio;
 
-public class EnemyShot : MonoBehaviour
+public class Shot : MonoBehaviour
 {
-    public GameObject bulletPerfab, enemyPrefab;// 弾のプレハブ /自身の親プレハブ
-    public EnemySearch enemySearch;
+    public GameObject bulletPerfab;// 弾のプレハブ
     public int Maxremainingbullets, remainingbullets, ShotSpeed;//マガジンの装弾数 / マガジン内の残弾 /飛ばす力
     float timer = 0.0f;
-    [HideInInspector] public float interval;
-    [HideInInspector] public bool IsCap;
-
+    public float interval;
+    public AudioClip[] sound;
+    AudioSource SE;
     private void Start()
     {
         remainingbullets = Maxremainingbullets;
-        enemySearch = transform.parent.GetChild(0).GetComponent<EnemySearch>();
+        SE = GetComponent<AudioSource>();
+
     }
 
     void Update()
     {
-        if (enemySearch.IsCapture)
-        {
-            if (timer <= 0.0f)
-            {
-                Shot();
-                timer = interval;
-            }
 
-            if (timer > 0.0f)
-            {
-                timer -= Time.deltaTime;
-            }
+        if (Input.GetButton("Fire1") && timer <= 0.0f)
+        {
+            Shoot();
+            timer = interval;
         }
+
+        if (timer > 0.0f)
+        {
+            timer -= Time.deltaTime;
+        }
+
     }
-    public void Shot()
+    public void Shoot()
     {
         if (remainingbullets > 0)
         {
-            GameObject bullet = (GameObject)Instantiate(bulletPerfab, transform.position,
+            GameObject bullet = Instantiate(bulletPerfab, transform.position,
                 Quaternion.Euler(
                     transform.position.x + Random.Range(-1.5f, 1.5f),
                     transform.position.y + Random.Range(-1.5f, 1.5f),
                     transform.position.z
                 )
             );
-
             Rigidbody bulletOBJ = bullet.GetComponent<Rigidbody>();
-            bulletOBJ.AddForce(transform.parent.forward * ShotSpeed);
+            bulletOBJ.AddForce(transform.forward * ShotSpeed);
+            ShotSE();
             remainingbullets -= 1;
         }
         else
@@ -55,9 +54,18 @@ public class EnemyShot : MonoBehaviour
             StartCoroutine(Reload());
         }
     }
+
+    void ShotSE()
+    {
+        for (int i = 0; i < sound.Length; i++)
+        {
+            SE.PlayOneShot(sound[i]);
+        }
+    }
     IEnumerator Reload()
     {
         yield return new WaitForSeconds(3.0f);
         remainingbullets = Maxremainingbullets;
     }
+
 }
