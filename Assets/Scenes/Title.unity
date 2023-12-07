@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpText: {fileID: 38220694}
-  textSpeed: 3
+  textSpeed: 3.12
   textPanel: {fileID: 1947687328}
   imagePanel: {fileID: 1305467505}
   buttonPanel: {fileID: 1237117572}
