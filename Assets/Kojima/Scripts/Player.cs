@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     bool isDead; //生死判定
     bool isJump; //ジャンプの判定
 
-    bool cursorLock; //カーソル固定判定
+    [HideInInspector] public bool cursorLock; //カーソル固定判定
 
     Animator animator; //アニメーター
 

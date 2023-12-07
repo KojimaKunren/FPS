@@ -36,6 +36,7 @@ public class ResultScene : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
         //プレイヤー名表示
         user = GameObject.Find("UserDataObject").GetComponent<User>();
         userNameText.text = user.GetUserName();
@@ -64,29 +65,6 @@ public class ResultScene : MonoBehaviour
             newRecordPanel.SetActive(true);
         }
     }
-
-    //ハイスコア生成用
-    // int[] CalcHighScore()
-    // {
-    //     int[] newscores = new int[3];
-    //     List<int> highscores = new List<int>();
-    //     foreach (int s in scores)
-    //     {
-    //         highscores.Add(s);
-    //     }
-    //     highscores.Add(currentScore);
-
-    //     for (int i = 0; i < 3; i++)
-    //     {
-    //         int highscore = highscores.Max();
-    //         newscores.Append(highscore);
-    //         highscores.Remove(i);
-    //     }
-
-    //     scores = newscores;
-
-    //     return scores;
-    // }
 
     bool CheckNewRecord()
     {

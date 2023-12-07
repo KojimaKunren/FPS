@@ -78,11 +78,14 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("score", player.GetScore());
         PlayerPrefs.SetInt("tagcount", player.GetPlayerTagCount());
         PlayerPrefs.SetInt("tagscore", player.GetPlayerTagScore());
-        Cursor.lockState = CursorLockMode.None;
         enabled = false;
         gameEndCanvas.SetActive(true);
         sendscore.SendScoreStart(user);
         Invoke("MoveResult", 3.0f);
+        if (player.cursorLock)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
 
