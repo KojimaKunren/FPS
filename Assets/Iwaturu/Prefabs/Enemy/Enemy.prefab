@@ -1063,8 +1063,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+  index: 0
   speed: 50
   itemPrefab: {fileID: 4596527560935525095, guid: 923dfa349f9709e4bb7cd0338eb8e1c8, type: 3}
+  targets: []
 --- !u!54 &4326608293727661303
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1434,6 +1436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsCapture: 0
+  index: 0
 --- !u!135 &5908705725685893178
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1445,7 +1448,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10.91
+  m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5983886977256578305
 GameObject:
@@ -2636,6 +2639,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3981432747558516351}
     m_Modifications:
+    - target: {fileID: 4361360680150539187, guid: 0d2997383b9c5fa4d814c41ab70f51ef, type: 3}
+      propertyPath: interval
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361360680150539187, guid: 0d2997383b9c5fa4d814c41ab70f51ef, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 4326608293727661253}
     - target: {fileID: 4361360680150539187, guid: 0d2997383b9c5fa4d814c41ab70f51ef, type: 3}
       propertyPath: enemySearch
       value: 

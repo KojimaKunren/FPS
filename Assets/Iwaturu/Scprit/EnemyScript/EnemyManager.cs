@@ -13,7 +13,7 @@ public class EnemyManager : MonoBehaviour
     float coroTime, halfExtents;
     void Start()
     {
-        coroTime = 20.0f;
+        coroTime = GM.timer / 2;
         posi = ground.transform.position;
         size = ground.bounds.size;
         halfExtents = empty.GetComponent<SphereCollider>().radius;

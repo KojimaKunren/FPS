@@ -10,7 +10,7 @@ public class Heal : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            HealHP = 100;
+            HealHP = 50;
             Destroy(gameObject);
         }
     }

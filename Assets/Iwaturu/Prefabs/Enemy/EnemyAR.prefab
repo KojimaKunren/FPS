@@ -50,5 +50,5 @@ MonoBehaviour:
   Maxremainingbullets: 30
   remainingbullets: 30
   ShotSpeed: 1000
-  interval: 3
+  interval: 2
   IsCap: 0

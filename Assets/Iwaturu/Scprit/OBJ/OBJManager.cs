@@ -16,7 +16,7 @@ public class OBJManager : MonoBehaviour
     float halfExtents;
     void Start()
     {
-        coroTime = 30.0f;
+        coroTime = GM.timer / 3;
         posi = ground.transform.position;
         size = ground.bounds.size;
         halfExtents = empty.GetComponent<SphereCollider>().radius;

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4596527560935525093}
   - component: {fileID: 4596527560935525094}
   - component: {fileID: 3193969911880734817}
-  - component: {fileID: -4089943290804436794}
+  - component: {fileID: 735024200923091082}
   m_Layer: 9
   m_Name: Score
   m_TagString: Score
@@ -129,7 +129,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.7
   m_Center: {x: 0.0026, y: -2, z: -0.0026000142}
---- !u!114 &-4089943290804436794
+--- !u!114 &735024200923091082
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4596527560935525095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2781a54e3035b0940a26b1be76352595, type: 3}
+  m_Script: {fileID: 11500000, guid: e5b5b6f179afe924dbdd8eeceffdd1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0

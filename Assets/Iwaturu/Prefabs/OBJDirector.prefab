@@ -41,10 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1036716368923621742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4273b7d189a960844a7f05c485175f0e, type: 3}
+  m_Script: {fileID: 11500000, guid: 98181ad92ead2ef4fba7538f44eeb08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OBJbreak: 0
   itemDropPrefabs:
   - {fileID: 6913495778555650430, guid: 00b9995f9da25d64da0a54198a10020f, type: 3}
   OBJPrefabs:

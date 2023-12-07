@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyAction : MonoBehaviour
 {
-    const int MaxHp = 100;
+    const int MaxHp = 200;
     [HideInInspector] public int hp, index;
     public float speed;
     float rote;

@@ -32,6 +32,11 @@ public class Shot : MonoBehaviour
             timer -= Time.deltaTime;
         }
 
+        if (Input.GetKeyDown("r"))
+        {
+            StartCoroutine(Reload());
+        }
+
     }
     public void Shoot()
     {

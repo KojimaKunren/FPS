@@ -41,11 +41,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7264167624613472928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64696947ee2102644a72b54e64a172cd, type: 3}
+  m_Script: {fileID: 11500000, guid: bef58735f0ba0904b99a46b540f0f65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotSpeed: 2000
   bulletPerfab: {fileID: 7565030381299030621, guid: 6af27e1e9de10874199d439d321ebfd3, type: 3}
   Maxremainingbullets: 20
   remainingbullets: 20
-  interval: 0.01
+  ShotSpeed: 1000
+  interval: 0.1
+  sound:
+  - {fileID: 8300000, guid: 37ec2d12d6533e7408f8d816b997e1ac, type: 3}
+  - {fileID: 8300000, guid: 43c9ef2a5cefb01418c81f5d41a4c83c, type: 3}

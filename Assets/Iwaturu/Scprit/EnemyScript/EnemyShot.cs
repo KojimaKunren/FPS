@@ -9,7 +9,7 @@ public class EnemyShot : MonoBehaviour
     public EnemySearch enemySearch;
     public int Maxremainingbullets, remainingbullets, ShotSpeed;//マガジンの装弾数 / マガジン内の残弾 /飛ばす力
     float timer = 0.0f;
-    [HideInInspector] public float interval;
+    public float interval;
     [HideInInspector] public bool IsCap;
 
     private void Start()
