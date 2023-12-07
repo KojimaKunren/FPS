@@ -78,7 +78,7 @@ public class Login : MonoBehaviour
 
     public IEnumerator Get_user_records()
     {
-        string url = "http://localhost/fps/get_user_record.py";
+        string url = "http://192.168.12.5//fps/get_user_record.py";
 
         WWWForm form = new WWWForm();
         form.AddField("user_name", _nameInput.text);
