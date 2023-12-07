@@ -19,7 +19,15 @@ public class UserRegister : MonoBehaviour
 
     public void SendEntryUser()
     {
-        StartCoroutine(Entry_User());
+        Inputdata();
+        if (name != "" && pass != "")
+        {
+            StartCoroutine(Entry_User());
+        }
+        else
+        {
+            Debug.Log("文字の入力が必要です");
+        }
     }
     public void Inputdata()
     {
